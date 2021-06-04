@@ -1,0 +1,61 @@
+#include <iostream>
+using namespace std;
+class point
+{
+private:
+	int x, y;
+public:
+	void Init(int a, int b)
+	{
+		x = a;
+		y = b;
+	}
+	void Show()
+	{
+		cout << "[" << x << "," << y << "]" << endl;
+	}
+};
+class generater
+{
+private:
+	point p;
+	int r;
+public:
+	void Init(int a,int b,int c)
+	{
+		r = c;
+		p.Init(a,b);
+	}
+	void Show()
+	{
+		cout << "radius : " << r << endl;
+		p.Show();
+	}
+};
+class Ring
+{
+private:
+	generater gen;
+	generater gen2;
+public:
+	void Initmembers(int a, int b, int c, int d, int e, int f)
+	{
+		gen.Init(a,b,c);
+		gen2.Init(d,e,f);
+	}
+	void ShowRingInfo()
+	{
+		cout << "Iner Circle Info" << endl;
+		gen.Show();
+
+		cout << "Outer Circle Info" << endl;
+		gen2.Show();
+	}
+};
+int main(void)
+{
+	Ring ring;
+	ring.Initmembers(1, 1, 4, 2, 2, 9);
+	ring.ShowRingInfo();
+	return 0;
+}
