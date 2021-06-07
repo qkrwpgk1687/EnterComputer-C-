@@ -1,0 +1,2341 @@
+import random
+from tkinter import *
+root = Tk()
+ #주석1 정창인 뜨면 전용메시지와 추가점수 획득 추가
+#주석2 요네나 야스오가 뜰때에는 70퍼센트의 확률로 점수 하락 30퍼의 확률로 점수 상승
+#주석3 맞추면 점수 추가획득및 전용메시지 추가 (주석 1의 메시지)
+a = [["상고","구둟","관성","밖","소장","막다","헬륨","백제","면도","닦다","가방","기아","조개","낮","두창"],
+["용돈","추석","아기","노휵","키읔","찢다","너머","손절","홑몸","마뜩","규정","수고","악인","산말","하나"],
+["만남","엄마","미리","이날","엉망","날림","냉면","망나니","왕궁","아이","남","몸","내일","어제","미나리",],
+["마냥","어른","안마","내면","늑대","피리","포탑","말판","멀미","참말","얼른","모임","마음","물음","사기"],
+["게임","야스오","과학","요네","수학","이과","형제","한글","도서","메모","연필","종이","창문","작가","커피"],
+["학교","피로","아침","종료","바닥","하늘","건물","구름","타자","졸음","환희","튽長","무대","불독","수련"],
+["학원","주상","가지","식사","뒷간","효자","기자","암석","바론","한국","반지","장군","장님","나무","비료"],
+["보강","그만","히읗","전설","수렁","바지","모자","케밥","조리","고기","괴물","버그","매우","많다","도구"],
+["실행","엑셀","경찰","마차","다리","마부","가마","고래","방역","개학","영어","선생","정창인","후광","붕괴"],
+["전갈","막대","사고","등산","기상","외지","가곡","가게","표정","소설","번역","기차","소라","의지","정신"],
+["가정","가사","수리","황사","수발","겨자","귀신","광고","소개","고정","흑우","병실","가수","염주","결제"],
+["낭비","중독","고난","역경","식기","하사","기계","과자","위로","법정","검사","책상","채소","유럽","슭곰"],
+["신뢰","연습","순결","횃불","행운","우주","청소","신념","세상","고양","향수","온도","날씨","저녁","비유"],
+["소리","위장","두릅","버섯","주사","북녘","정렬","향목","맑음","값진","예의","절삭","절충","사형","고막"],
+["흉계","순리","허황","기휘","븐연","절륜","틀니","I3eta","무롶","oㅏ0ㅣ","괴성","Eㅏ자","계획","악마","광인"]
+]
+#추가주석1 문자열 리스트 중복확인 반복문 참고 : https://hashcode.co.kr/questions/1058/%EB%A6%AC%EC%8A%A4%ED%8A%B8%EB%A5%BC-%EC%82%AC%EC%A0%84%EC%88%9C%EC%9C%BC%EB%A1%9C-%EC%A0%95%EB%A0%AC%ED%95%98%EB%A0%A4%EA%B3%A0-%ED%95%A9%EB%8B%88%EB%8B%A4
+#tkinter 설정
+root.title("reverse the card!")
+root.geometry("1920x1080+100+100")
+root.resizable(True,True)
+val = 0
+#점령 상태 배열 0은 플레이어,1은 컴퓨터
+status = [0]*226
+#점수판 변수
+player = 112
+com = 113
+#버튼
+button1 = Button(root,width = 10,text = a[0][0],fg = "blue",overrelief="solid")
+status[1]=0
+button1.place(x=0,y=0)
+
+button2 = Button(root,width = 10,text = a[0][1],fg = "blue",overrelief="solid")
+status[2]=0
+button2.place(x=80,y=0)
+
+button3 = Button(root,width = 10,text = a[0][2],fg = "blue",overrelief="solid")
+status[3]=0
+button3.place(x=160,y=0)
+
+button4 = Button(root,width = 10,text = a[0][3],fg = "blue",overrelief="solid")
+status[4]=0
+button4.place(x=240,y=0)
+
+button5 = Button(root,width = 10,text = a[0][4],fg = "blue",overrelief="solid")
+status[5]=0
+button5.place(x=320,y=0)
+
+button6 = Button(root,width = 10,text = a[0][5],fg = "blue",overrelief="solid")
+status[6]=0
+button6.place(x=400,y=0)
+
+button7 = Button(root,width = 10,text = a[0][6],fg = "blue",overrelief="solid")
+status[7]=0
+button7.place(x=480,y=0)
+
+button8 = Button(root,width = 10,text = a[0][7],fg = "blue",overrelief="solid")
+status[8]=0
+button8.place(x=560,y=0)
+
+button9 = Button(root,width = 10,text = a[0][8],fg = "red",overrelief="solid")
+status[9]=1
+button9.place(x=640,y=0)
+
+button10 = Button(root,width = 10,text = a[0][9],fg = "red",overrelief="solid")
+status[10]=1
+button10.place(x=720,y=0)
+
+button11 = Button(root,width = 10,text = a[0][10],fg = "red",overrelief="solid")
+status[11]=1
+button11.place(x=800,y=0)
+
+button12 = Button(root,width = 10,text = a[0][11],fg = "red",overrelief="solid")
+status[12]=1
+button12.place(x=880,y=0)
+
+button13 = Button(root,width = 10,text = a[0][12],fg = "red",overrelief="solid")
+status[13]=1
+button13.place(x=960,y=0)
+
+button14 = Button(root,width = 10,text = a[0][13],fg = "red",overrelief="solid")
+status[14]=1
+button14.place(x=1040,y=0)
+
+button15 = Button(root,width = 10,text = a[0][14],fg = "red",overrelief="solid")
+status[15]=1
+button15.place(x=1120,y=0)
+
+button16 = Button(root,width = 10,text = a[1][0],fg = "blue",overrelief="solid")
+status[16]=0
+button16.place(x=0,y=26)
+
+button17 = Button(root,width = 10,text = a[1][1],fg = "blue",overrelief="solid")
+status[17]=0
+button17.place(x=80,y=26)
+
+button18 = Button(root,width = 10,text = a[1][2],fg = "blue",overrelief="solid")
+status[18]=0
+button18.place(x=160,y=26)
+
+button19 = Button(root,width = 10,text = a[1][3],fg = "blue",overrelief="solid")
+status[19]=0
+button19.place(x=240,y=26)
+
+button20 = Button(root,width = 10,text = a[1][4],fg = "blue",overrelief="solid")
+status[20]=0
+button20.place(x=320,y=26)
+
+button21 = Button(root,width = 10,text = a[1][5],fg = "blue",overrelief="solid")
+status[21]=0
+button21.place(x=400,y=26)
+
+button22 = Button(root,width = 10,text = a[1][6],fg = "blue",overrelief="solid")
+status[22]=0
+button22.place(x=480,y=26)
+
+button23 = Button(root,width = 10,text = a[1][7],fg = "blue",overrelief="solid")
+status[23]=0
+button23.place(x=560,y=26)
+
+button24 = Button(root,width = 10,text = a[1][8],fg = "red",overrelief="solid")
+status[24]=1
+button24.place(x=640,y=26)
+
+button25 = Button(root,width = 10,text = a[1][9],fg = "red",overrelief="solid")
+status[25]=1
+button25.place(x=720,y=26)
+
+button26 = Button(root,width = 10,text = a[1][10],fg = "red",overrelief="solid")
+status[26]=1
+button26.place(x=800,y=26)
+
+button27 = Button(root,width = 10,text = a[1][11],fg = "red",overrelief="solid")
+status[27]=1
+button27.place(x=880,y=26)
+
+button28 = Button(root,width = 10,text = a[1][12],fg = "red",overrelief="solid")
+status[28]=1
+button28.place(x=960,y=26)
+
+button29 = Button(root,width = 10,text = a[1][13],fg = "red",overrelief="solid")
+status[29]=1
+button29.place(x=1040,y=26)
+
+button30 = Button(root,width = 10,text = a[1][14],fg = "red",overrelief="solid")
+status[30]=1
+button30.place(x=1120,y=26)
+
+button31 = Button(root,width = 10,text = a[2][0],fg = "blue",overrelief="solid")
+status[31]=0
+button31.place(x=0,y=52)
+
+button32 = Button(root,width = 10,text = a[2][1],fg = "blue",overrelief="solid")
+status[32]=0
+button32.place(x=80,y=52)
+
+button33 = Button(root,width = 10,text = a[2][2],fg = "blue",overrelief="solid")
+status[33]=0
+button33.place(x=160,y=52)
+
+button34 = Button(root,width = 10,text = a[2][3],fg = "blue",overrelief="solid")
+status[34]=0
+button34.place(x=240,y=52)
+
+button35 = Button(root,width = 10,text = a[2][4],fg = "blue",overrelief="solid")
+status[35]=0
+button35.place(x=320,y=52)
+
+button36 = Button(root,width = 10,text = a[2][5],fg = "blue",overrelief="solid")
+status[36]=0
+button36.place(x=400,y=52)
+
+button37 = Button(root,width = 10,text = a[2][6],fg = "blue",overrelief="solid")
+status[37]=0
+button37.place(x=480,y=52)
+
+button38 = Button(root,width = 10,text = a[2][7],fg = "blue",overrelief="solid")
+status[38]=0
+button38.place(x=560,y=52)
+
+button39 = Button(root,width = 10,text = a[2][8],fg = "red",overrelief="solid")
+status[39]=1
+button39.place(x=640,y=52)
+
+button40 = Button(root,width = 10,text = a[2][9],fg = "red",overrelief="solid")
+status[40]=1
+button40.place(x=720,y=52)
+
+button41 = Button(root,width = 10,text = a[2][10],fg = "red",overrelief="solid")
+status[41]=1
+button41.place(x=800,y=52)
+
+button42 = Button(root,width = 10,text = a[2][11],fg = "red",overrelief="solid")
+status[42]=1
+button42.place(x=880,y=52)
+
+button43 = Button(root,width = 10,text = a[2][12],fg = "red",overrelief="solid")
+status[43]=1
+button43.place(x=960,y=52)
+
+button44 = Button(root,width = 10,text = a[2][13],fg = "red",overrelief="solid")
+status[44]=1
+button44.place(x=1040,y=52)
+
+button45 = Button(root,width = 10,text = a[2][14],fg = "red",overrelief="solid")
+status[45]=1
+button45.place(x=1120,y=52)
+
+button46 = Button(root,width = 10,text = a[3][0],fg = "blue",overrelief="solid")
+status[46]=0
+button46.place(x=0,y=78)
+
+button47 = Button(root,width = 10,text = a[3][1],fg = "blue",overrelief="solid")
+status[47]=0
+button47.place(x=80,y=78)
+
+button48 = Button(root,width = 10,text = a[3][2],fg = "blue",overrelief="solid")
+status[48]=0
+button48.place(x=160,y=78)
+
+button49 = Button(root,width = 10,text = a[3][3],fg = "blue",overrelief="solid")
+status[49]=0
+button49.place(x=240,y=78)
+
+button50 = Button(root,width = 10,text = a[3][4],fg = "blue",overrelief="solid")
+status[50]=0
+button50.place(x=320,y=78)
+
+button51 = Button(root,width = 10,text = a[3][5],fg = "blue",overrelief="solid")
+status[51]=0
+button51.place(x=400,y=78)
+
+button52 = Button(root,width = 10,text = a[3][6],fg = "blue",overrelief="solid")
+status[52]=0
+button52.place(x=480,y=78)
+
+button53 = Button(root,width = 10,text = a[3][7],fg = "blue",overrelief="solid")
+status[53]=0
+button53.place(x=560,y=78)
+
+button54 = Button(root,width = 10,text = a[3][8],fg = "red",overrelief="solid")
+status[54]=1
+button54.place(x=640,y=78)
+
+button55 = Button(root,width = 10,text = a[3][9],fg = "red",overrelief="solid")
+status[55]=1
+button55.place(x=720,y=78)
+
+button56 = Button(root,width = 10,text = a[3][10],fg = "red",overrelief="solid")
+status[56]=1
+button56.place(x=800,y=78)
+
+button57 = Button(root,width = 10,text = a[3][11],fg = "red",overrelief="solid")
+status[57]=1
+button57.place(x=880,y=78)
+
+button58 = Button(root,width = 10,text = a[3][12],fg = "red",overrelief="solid")
+status[58]=1
+button58.place(x=960,y=78)
+
+button59 = Button(root,width = 10,text = a[3][13],fg = "red",overrelief="solid")
+status[59]=1
+button59.place(x=1040,y=78)
+
+button60 = Button(root,width = 10,text = a[3][14],fg = "red",overrelief="solid")
+status[60]=1
+button60.place(x=1120,y=78)
+
+button61 = Button(root,width = 10,text = a[4][0],fg = "blue",overrelief="solid")
+status[61]=0
+button61.place(x=0,y=104)
+
+button62 = Button(root,width = 10,text = a[4][1],fg = "blue",overrelief="solid")
+status[62]=0
+button62.place(x=80,y=104)
+
+button63 = Button(root,width = 10,text = a[4][2],fg = "blue",overrelief="solid")
+status[63]=0
+button63.place(x=160,y=104)
+
+button64 = Button(root,width = 10,text = a[4][3],fg = "blue",overrelief="solid")
+status[64]=0
+button64.place(x=240,y=104)
+
+button65 = Button(root,width = 10,text = a[4][4],fg = "blue",overrelief="solid")
+status[65]=0
+button65.place(x=320,y=104)
+
+button66 = Button(root,width = 10,text = a[4][5],fg = "blue",overrelief="solid")
+status[66]=0
+button66.place(x=400,y=104)
+
+button67 = Button(root,width = 10,text = a[4][6],fg = "blue",overrelief="solid")
+status[67]=0
+button67.place(x=480,y=104)
+
+button68 = Button(root,width = 10,text = a[4][7],fg = "blue",overrelief="solid")
+status[68]=0
+button68.place(x=560,y=104)
+
+button69 = Button(root,width = 10,text = a[4][8],fg = "red",overrelief="solid")
+status[69]=1
+button69.place(x=640,y=104)
+
+button70 = Button(root,width = 10,text = a[4][9],fg = "red",overrelief="solid")
+status[70]=1
+button70.place(x=720,y=104)
+
+button71 = Button(root,width = 10,text = a[4][10],fg = "red",overrelief="solid")
+status[71]=1
+button71.place(x=800,y=104)
+
+button72 = Button(root,width = 10,text = a[4][11],fg = "red",overrelief="solid")
+status[72]=1
+button72.place(x=880,y=104)
+
+button73 = Button(root,width = 10,text = a[4][12],fg = "red",overrelief="solid")
+status[73]=1
+button73.place(x=960,y=104)
+
+button74 = Button(root,width = 10,text = a[4][13],fg = "red",overrelief="solid")
+status[74]=1
+button74.place(x=1040,y=104)
+
+button75 = Button(root,width = 10,text = a[4][14],fg = "red",overrelief="solid")
+status[75]=1
+button75.place(x=1120,y=104)
+
+button76 = Button(root,width = 10,text = a[5][0],fg = "blue",overrelief="solid")
+status[76]=0
+button76.place(x=0,y=130)
+
+button77 = Button(root,width = 10,text = a[5][1],fg = "blue",overrelief="solid")
+status[77]=0
+button77.place(x=80,y=130)
+
+button78 = Button(root,width = 10,text = a[5][2],fg = "blue",overrelief="solid")
+status[78]=0
+button78.place(x=160,y=130)
+
+button79 = Button(root,width = 10,text = a[5][3],fg = "blue",overrelief="solid")
+status[79]=0
+button79.place(x=240,y=130)
+
+button80 = Button(root,width = 10,text = a[5][4],fg = "blue",overrelief="solid")
+status[80]=0
+button80.place(x=320,y=130)
+
+button81 = Button(root,width = 10,text = a[5][5],fg = "blue",overrelief="solid")
+status[81]=0
+button81.place(x=400,y=130)
+
+button82 = Button(root,width = 10,text = a[5][6],fg = "blue",overrelief="solid")
+status[82]=0
+button82.place(x=480,y=130)
+
+button83 = Button(root,width = 10,text = a[5][7],fg = "blue",overrelief="solid")
+status[83]=0
+button83.place(x=560,y=130)
+
+button84 = Button(root,width = 10,text = a[5][8],fg = "red",overrelief="solid")
+status[84]=1
+button84.place(x=640,y=130)
+
+button85 = Button(root,width = 10,text = a[5][9],fg = "red",overrelief="solid")
+status[85]=1
+button85.place(x=720,y=130)
+
+button86 = Button(root,width = 10,text = a[5][10],fg = "red",overrelief="solid")
+status[86]=1
+button86.place(x=800,y=130)
+
+button87 = Button(root,width = 10,text = a[5][11],fg = "red",overrelief="solid")
+status[87]=1
+button87.place(x=880,y=130)
+
+button88 = Button(root,width = 10,text = a[5][12],fg = "red",overrelief="solid")
+status[88]=1
+button88.place(x=960,y=130)
+
+button89 = Button(root,width = 10,text = a[5][13],fg = "red",overrelief="solid")
+status[89]=1
+button89.place(x=1040,y=130)
+
+button90 = Button(root,width = 10,text = a[5][14],fg = "red",overrelief="solid")
+status[90]=1
+button90.place(x=1120,y=130)
+
+button91 = Button(root,width = 10,text = a[6][0],fg = "blue",overrelief="solid")
+status[91]=0
+button91.place(x=0,y=156)
+
+button92 = Button(root,width = 10,text = a[6][1],fg = "blue",overrelief="solid")
+status[92]=0
+button92.place(x=80,y=156)
+
+button93 = Button(root,width = 10,text = a[6][2],fg = "blue",overrelief="solid")
+status[93]=0
+button93.place(x=160,y=156)
+
+button94 = Button(root,width = 10,text = a[6][3],fg = "blue",overrelief="solid")
+status[94]=0
+button94.place(x=240,y=156)
+
+button95 = Button(root,width = 10,text = a[6][4],fg = "blue",overrelief="solid")
+status[95]=0
+button95.place(x=320,y=156)
+
+button96 = Button(root,width = 10,text = a[6][5],fg = "blue",overrelief="solid")
+status[96]=0
+button96.place(x=400,y=156)
+
+button97 = Button(root,width = 10,text = a[6][6],fg = "blue",overrelief="solid")
+status[97]=0
+button97.place(x=480,y=156)
+
+button98 = Button(root,width = 10,text = a[6][7],fg = "blue",overrelief="solid")
+status[98]=0
+button98.place(x=560,y=156)
+
+button99 = Button(root,width = 10,text = a[6][8],fg = "red",overrelief="solid")
+status[99]=1
+button99.place(x=640,y=156)
+
+button100 = Button(root,width = 10,text = a[6][9],fg = "red",overrelief="solid")
+status[100]=1
+button100.place(x=720,y=156)
+
+button101 = Button(root,width = 10,text = a[6][10],fg = "red",overrelief="solid")
+status[101]=1
+button101.place(x=800,y=156)
+
+button102 = Button(root,width = 10,text = a[6][11],fg = "red",overrelief="solid")
+status[102]=1
+button102.place(x=880,y=156)
+
+button103 = Button(root,width = 10,text = a[6][12],fg = "red",overrelief="solid")
+status[103]=1
+button103.place(x=960,y=156)
+
+button104 = Button(root,width = 10,text = a[6][13],fg = "red",overrelief="solid")
+status[104]=1
+button104.place(x=1040,y=156)
+
+button105 = Button(root,width = 10,text = a[6][14],fg = "red",overrelief="solid")
+status[105]=1
+button105.place(x=1120,y=156)
+
+button106 = Button(root,width = 10,text = a[7][0],fg = "blue",overrelief="solid")
+status[106]=0
+button106.place(x=0,y=182)
+
+button107 = Button(root,width = 10,text = a[7][1],fg = "blue",overrelief="solid")
+status[107]=0
+button107.place(x=80,y=182)
+
+button108 = Button(root,width = 10,text = a[7][2],fg = "blue",overrelief="solid")
+status[108]=0
+button108.place(x=160,y=182)
+
+button109 = Button(root,width = 10,text = a[7][3],fg = "blue",overrelief="solid")
+status[109]=0
+button109.place(x=240,y=182)
+
+button110 = Button(root,width = 10,text = a[7][4],fg = "blue",overrelief="solid")
+status[110]=0
+button110.place(x=320,y=182)
+
+button111 = Button(root,width = 10,text = a[7][5],fg = "blue",overrelief="solid")
+status[111]=0
+button111.place(x=400,y=182)
+
+button112 = Button(root,width = 10,text = a[7][6],fg = "blue",overrelief="solid")
+status[112]=0
+button112.place(x=480,y=182)
+
+button113 = Button(root,width = 10,text = a[7][7],fg = "red",overrelief="solid")
+status[113]=1
+button113.place(x=560,y=182)
+
+button114 = Button(root,width = 10,text = a[7][8],fg = "red",overrelief="solid")
+status[114]=1
+button114.place(x=640,y=182)
+
+button115 = Button(root,width = 10,text = a[7][9],fg = "red",overrelief="solid")
+status[115]=1
+button115.place(x=720,y=182)
+
+button116 = Button(root,width = 10,text = a[7][10],fg = "red",overrelief="solid")
+status[116]=1
+button116.place(x=800,y=182)
+
+button117 = Button(root,width = 10,text = a[7][11],fg = "red",overrelief="solid")
+status[117]=1
+button117.place(x=880,y=182)
+
+button118 = Button(root,width = 10,text = a[7][12],fg = "red",overrelief="solid")
+status[118]=1
+button118.place(x=960,y=182)
+
+button119 = Button(root,width = 10,text = a[7][13],fg = "red",overrelief="solid")
+status[119]=1
+button119.place(x=1040,y=182)
+
+button120 = Button(root,width = 10,text = a[7][14],fg = "red",overrelief="solid")
+status[120]=1
+button120.place(x=1120,y=182)
+
+button121 = Button(root,width = 10,text = a[8][0],fg = "blue",overrelief="solid")
+status[121]=0
+button121.place(x=0,y=208)
+
+button122 = Button(root,width = 10,text = a[8][1],fg = "blue",overrelief="solid")
+status[122]=0
+button122.place(x=80,y=208)
+
+button123 = Button(root,width = 10,text = a[8][2],fg = "blue",overrelief="solid")
+status[123]=0
+button123.place(x=160,y=208)
+
+button124 = Button(root,width = 10,text = a[8][3],fg = "blue",overrelief="solid")
+status[124]=0
+button124.place(x=240,y=208)
+
+button125 = Button(root,width = 10,text = a[8][4],fg = "blue",overrelief="solid")
+status[125]=0
+button125.place(x=320,y=208)
+
+button126 = Button(root,width = 10,text = a[8][5],fg = "blue",overrelief="solid")
+status[126]=0
+button126.place(x=400,y=208)
+
+button127 = Button(root,width = 10,text = a[8][6],fg = "blue",overrelief="solid")
+status[127]=0
+button127.place(x=480,y=208)
+
+button128 = Button(root,width = 10,text = a[8][7],fg = "red",overrelief="solid")
+status[128]=1
+button128.place(x=560,y=208)
+
+button129 = Button(root,width = 10,text = a[8][8],fg = "red",overrelief="solid")
+status[129]=1
+button129.place(x=640,y=208)
+
+button130 = Button(root,width = 10,text = a[8][9],fg = "red",overrelief="solid")
+status[130]=1
+button130.place(x=720,y=208)
+
+button131 = Button(root,width = 10,text = a[8][10],fg = "red",overrelief="solid")
+status[131]=1
+button131.place(x=800,y=208)
+
+button132 = Button(root,width = 10,text = a[8][11],fg = "red",overrelief="solid")
+status[132]=1
+button132.place(x=880,y=208)
+
+button133 = Button(root,width = 10,text = a[8][12],fg = "red",overrelief="solid")
+status[133]=1
+button133.place(x=960,y=208)
+
+button134 = Button(root,width = 10,text = a[8][13],fg = "red",overrelief="solid")
+status[134]=1
+button134.place(x=1040,y=208)
+
+button135 = Button(root,width = 10,text = a[8][14],fg = "red",overrelief="solid")
+status[135]=1
+button135.place(x=1120,y=208)
+
+button136 = Button(root,width = 10,text = a[9][0],fg = "blue",overrelief="solid")
+status[136]=0
+button136.place(x=0,y=234)
+
+button137 = Button(root,width = 10,text = a[9][1],fg = "blue",overrelief="solid")
+status[137]=0
+button137.place(x=80,y=234)
+
+button138 = Button(root,width = 10,text = a[9][2],fg = "blue",overrelief="solid")
+status[138]=0
+button138.place(x=160,y=234)
+
+button139 = Button(root,width = 10,text = a[9][3],fg = "blue",overrelief="solid")
+status[139]=0
+button139.place(x=240,y=234)
+
+button140 = Button(root,width = 10,text = a[9][4],fg = "blue",overrelief="solid")
+status[140]=0
+button140.place(x=320,y=234)
+
+button141 = Button(root,width = 10,text = a[9][5],fg = "blue",overrelief="solid")
+status[141]=0
+button141.place(x=400,y=234)
+
+button142 = Button(root,width = 10,text = a[9][6],fg = "blue",overrelief="solid")
+status[142]=0
+button142.place(x=480,y=234)
+
+button143 = Button(root,width = 10,text = a[9][7],fg = "red",overrelief="solid")
+status[143]=1
+button143.place(x=560,y=234)
+
+button144 = Button(root,width = 10,text = a[9][8],fg = "red",overrelief="solid")
+status[144]=1
+button144.place(x=640,y=234)
+
+button145 = Button(root,width = 10,text = a[9][9],fg = "red",overrelief="solid")
+status[145]=1
+button145.place(x=720,y=234)
+
+button146 = Button(root,width = 10,text = a[9][10],fg = "red",overrelief="solid")
+status[146]=1
+button146.place(x=800,y=234)
+
+button147 = Button(root,width = 10,text = a[9][11],fg = "red",overrelief="solid")
+status[147]=1
+button147.place(x=880,y=234)
+
+button148 = Button(root,width = 10,text = a[9][12],fg = "red",overrelief="solid")
+status[148]=1
+button148.place(x=960,y=234)
+
+button149 = Button(root,width = 10,text = a[9][13],fg = "red",overrelief="solid")
+status[149]=1
+button149.place(x=1040,y=234)
+
+button150 = Button(root,width = 10,text = a[9][14],fg = "red",overrelief="solid")
+status[150]=1
+button150.place(x=1120,y=234)
+
+button151 = Button(root,width = 10,text = a[10][0],fg = "blue",overrelief="solid")
+status[151]=0
+button151.place(x=0,y=260)
+
+button152 = Button(root,width = 10,text = a[10][1],fg = "blue",overrelief="solid")
+status[152]=0
+button152.place(x=80,y=260)
+
+button153 = Button(root,width = 10,text = a[10][2],fg = "blue",overrelief="solid")
+status[153]=0
+button153.place(x=160,y=260)
+
+button154 = Button(root,width = 10,text = a[10][3],fg = "blue",overrelief="solid")
+status[154]=0
+button154.place(x=240,y=260)
+
+button155 = Button(root,width = 10,text = a[10][4],fg = "blue",overrelief="solid")
+status[155]=0
+button155.place(x=320,y=260)
+
+button156 = Button(root,width = 10,text = a[10][5],fg = "blue",overrelief="solid")
+status[156]=0
+button156.place(x=400,y=260)
+
+button157 = Button(root,width = 10,text = a[10][6],fg = "blue",overrelief="solid")
+status[157]=0
+button157.place(x=480,y=260)
+
+button158 = Button(root,width = 10,text = a[10][7],fg = "red",overrelief="solid")
+status[158]=1
+button158.place(x=560,y=260)
+
+button159 = Button(root,width = 10,text = a[10][8],fg = "red",overrelief="solid")
+status[159]=1
+button159.place(x=640,y=260)
+
+button160 = Button(root,width = 10,text = a[10][9],fg = "red",overrelief="solid")
+status[160]=1
+button160.place(x=720,y=260)
+
+button161 = Button(root,width = 10,text = a[10][10],fg = "red",overrelief="solid")
+status[161]=1
+button161.place(x=800,y=260)
+
+button162 = Button(root,width = 10,text = a[10][11],fg = "red",overrelief="solid")
+status[162]=1
+button162.place(x=880,y=260)
+
+button163 = Button(root,width = 10,text = a[10][12],fg = "red",overrelief="solid")
+status[163]=1
+button163.place(x=960,y=260)
+
+button164 = Button(root,width = 10,text = a[10][13],fg = "red",overrelief="solid")
+status[164]=1
+button164.place(x=1040,y=260)
+
+button165 = Button(root,width = 10,text = a[10][14],fg = "red",overrelief="solid")
+status[165]=1
+button165.place(x=1120,y=260)
+
+button166 = Button(root,width = 10,text = a[11][0],fg = "blue",overrelief="solid")
+status[166]=0
+button166.place(x=0,y=286)
+
+button167 = Button(root,width = 10,text = a[11][1],fg = "blue",overrelief="solid")
+status[167]=0
+button167.place(x=80,y=286)
+
+button168 = Button(root,width = 10,text = a[11][2],fg = "blue",overrelief="solid")
+status[168]=0
+button168.place(x=160,y=286)
+
+button169 = Button(root,width = 10,text = a[11][3],fg = "blue",overrelief="solid")
+status[169]=0
+button169.place(x=240,y=286)
+
+button170 = Button(root,width = 10,text = a[11][4],fg = "blue",overrelief="solid")
+status[170]=0
+button170.place(x=320,y=286)
+
+button171 = Button(root,width = 10,text = a[11][5],fg = "blue",overrelief="solid")
+status[171]=0
+button171.place(x=400,y=286)
+
+button172 = Button(root,width = 10,text = a[11][6],fg = "blue",overrelief="solid")
+status[172]=0
+button172.place(x=480,y=286)
+
+button173 = Button(root,width = 10,text = a[11][7],fg = "red",overrelief="solid")
+status[173]=1
+button173.place(x=560,y=286)
+
+button174 = Button(root,width = 10,text = a[11][8],fg = "red",overrelief="solid")
+status[174]=1
+button174.place(x=640,y=286)
+
+button175 = Button(root,width = 10,text = a[11][9],fg = "red",overrelief="solid")
+status[175]=1
+button175.place(x=720,y=286)
+
+button176 = Button(root,width = 10,text = a[11][10],fg = "red",overrelief="solid")
+status[176]=1
+button176.place(x=800,y=286)
+
+button177 = Button(root,width = 10,text = a[11][11],fg = "red",overrelief="solid")
+status[177]=1
+button177.place(x=880,y=286)
+
+button178 = Button(root,width = 10,text = a[11][12],fg = "red",overrelief="solid")
+status[178]=1
+button178.place(x=960,y=286)
+
+button179 = Button(root,width = 10,text = a[11][13],fg = "red",overrelief="solid")
+status[179]=1
+button179.place(x=1040,y=286)
+
+button180 = Button(root,width = 10,text = a[11][14],fg = "red",overrelief="solid")
+status[180]=1
+button180.place(x=1120,y=286)
+
+button181 = Button(root,width = 10,text = a[12][0],fg = "blue",overrelief="solid")
+status[181]=0
+button181.place(x=0,y=312)
+
+button182 = Button(root,width = 10,text = a[12][1],fg = "blue",overrelief="solid")
+status[182]=0
+button182.place(x=80,y=312)
+
+button183 = Button(root,width = 10,text = a[12][2],fg = "blue",overrelief="solid")
+status[183]=0
+button183.place(x=160,y=312)
+
+button184 = Button(root,width = 10,text = a[12][3],fg = "blue",overrelief="solid")
+status[184]=0
+button184.place(x=240,y=312)
+
+button185 = Button(root,width = 10,text = a[12][4],fg = "blue",overrelief="solid")
+status[185]=0
+button185.place(x=320,y=312)
+
+button186 = Button(root,width = 10,text = a[12][5],fg = "blue",overrelief="solid")
+status[186]=0
+button186.place(x=400,y=312)
+
+button187 = Button(root,width = 10,text = a[12][6],fg = "blue",overrelief="solid")
+status[187]=0
+button187.place(x=480,y=312)
+
+button188 = Button(root,width = 10,text = a[12][7],fg = "red",overrelief="solid")
+status[188]=1
+button188.place(x=560,y=312)
+
+button189 = Button(root,width = 10,text = a[12][8],fg = "red",overrelief="solid")
+status[189]=1
+button189.place(x=640,y=312)
+
+button190 = Button(root,width = 10,text = a[12][9],fg = "red",overrelief="solid")
+status[190]=1
+button190.place(x=720,y=312)
+
+button191 = Button(root,width = 10,text = a[12][10],fg = "red",overrelief="solid")
+status[191]=1
+button191.place(x=800,y=312)
+
+button192 = Button(root,width = 10,text = a[12][11],fg = "red",overrelief="solid")
+status[192]=1
+button192.place(x=880,y=312)
+
+button193 = Button(root,width = 10,text = a[12][12],fg = "red",overrelief="solid")
+status[193]=1
+button193.place(x=960,y=312)
+
+button194 = Button(root,width = 10,text = a[12][13],fg = "red",overrelief="solid")
+status[194]=1
+button194.place(x=1040,y=312)
+
+button195 = Button(root,width = 10,text = a[12][14],fg = "red",overrelief="solid")
+status[195]=1
+button195.place(x=1120,y=312)
+
+button196 = Button(root,width = 10,text = a[13][0],fg = "blue",overrelief="solid")
+status[196]=0
+button196.place(x=0,y=338)
+
+button197 = Button(root,width = 10,text = a[13][1],fg = "blue",overrelief="solid")
+status[197]=0
+button197.place(x=80,y=338)
+
+button198 = Button(root,width = 10,text = a[13][2],fg = "blue",overrelief="solid")
+status[198]=0
+button198.place(x=160,y=338)
+
+button199 = Button(root,width = 10,text = a[13][3],fg = "blue",overrelief="solid")
+status[199]=0
+button199.place(x=240,y=338)
+
+button200 = Button(root,width = 10,text = a[13][4],fg = "blue",overrelief="solid")
+status[200]=0
+button200.place(x=320,y=338)
+
+button201 = Button(root,width = 10,text = a[13][5],fg = "blue",overrelief="solid")
+status[201]=0
+button201.place(x=400,y=338)
+
+button202 = Button(root,width = 10,text = a[13][6],fg = "blue",overrelief="solid")
+status[202]=0
+button202.place(x=480,y=338)
+
+button203 = Button(root,width = 10,text = a[13][7],fg = "red",overrelief="solid")
+status[203]=1
+button203.place(x=560,y=338)
+
+button204 = Button(root,width = 10,text = a[13][8],fg = "red",overrelief="solid")
+status[204]=1
+button204.place(x=640,y=338)
+
+button205 = Button(root,width = 10,text = a[13][9],fg = "red",overrelief="solid")
+status[205]=1
+button205.place(x=720,y=338)
+
+button206 = Button(root,width = 10,text = a[13][10],fg = "red",overrelief="solid")
+status[206]=1
+button206.place(x=800,y=338)
+
+button207 = Button(root,width = 10,text = a[13][11],fg = "red",overrelief="solid")
+status[207]=1
+button207.place(x=880,y=338)
+
+button208 = Button(root,width = 10,text = a[13][12],fg = "red",overrelief="solid")
+status[208]=1
+button208.place(x=960,y=338)
+
+button209 = Button(root,width = 10,text = a[13][13],fg = "red",overrelief="solid")
+status[209]=1
+button209.place(x=1040,y=338)
+
+button210 = Button(root,width = 10,text = a[13][14],fg = "red",overrelief="solid")
+status[210]=1
+button210.place(x=1120,y=338)
+
+button211 = Button(root,width = 10,text = a[14][0],fg = "blue",overrelief="solid")
+status[211]=0
+button211.place(x=0,y=364)
+
+button212 = Button(root,width = 10,text = a[14][1],fg = "blue",overrelief="solid")
+status[212]=0
+button212.place(x=80,y=364)
+
+button213 = Button(root,width = 10,text = a[14][2],fg = "blue",overrelief="solid")
+status[213]=0
+button213.place(x=160,y=364)
+
+button214 = Button(root,width = 10,text = a[14][3],fg = "blue",overrelief="solid")
+status[214]=0
+button214.place(x=240,y=364)
+
+button215 = Button(root,width = 10,text = a[14][4],fg = "blue",overrelief="solid")
+status[215]=0
+button215.place(x=320,y=364)
+
+button216 = Button(root,width = 10,text = a[14][5],fg = "blue",overrelief="solid")
+status[216]=0
+button216.place(x=400,y=364)
+
+button217 = Button(root,width = 10,text = a[14][6],fg = "blue",overrelief="solid")
+status[217]=0
+button217.place(x=480,y=364)
+
+button218 = Button(root,width = 10,text = a[14][7],fg = "red",overrelief="solid")
+status[218]=1
+button218.place(x=560,y=364)
+
+button219 = Button(root,width = 10,text = a[14][8],fg = "red",overrelief="solid")
+status[219]=1
+button219.place(x=640,y=364)
+
+button220 = Button(root,width = 10,text = a[14][9],fg = "red",overrelief="solid")
+status[220]=1
+button220.place(x=720,y=364)
+
+button221 = Button(root,width = 10,text = a[14][10],fg = "red",overrelief="solid")
+status[221]=1
+button221.place(x=800,y=364)
+
+button222 = Button(root,width = 10,text = a[14][11],fg = "red",overrelief="solid")
+status[222]=1
+button222.place(x=880,y=364)
+
+button223 = Button(root,width = 10,text = a[14][12],fg = "red",overrelief="solid")
+status[223]=1
+button223.place(x=960,y=364)
+
+button224 = Button(root,width = 10,text = a[14][13],fg = "red",overrelief="solid")
+status[224]=1
+button224.place(x=1040,y=364)
+
+button225 = Button(root,width = 10,text = a[14][14],fg = "red",overrelief="solid")
+status[225]=1
+button225.place(x=1120,y=364)
+# 입력받은 값 처리 함수
+def solution(event):
+    global player
+    if entry.get() == a[0][0]:
+        if status[1] == 1:
+            button1['fg'] = 'blue'
+            player = player + 1
+    if entry.get() == a[0][1]:
+        if status[2] == 1:
+            button2['fg'] = 'blue'
+            player = player + 1
+    if entry.get() == a[0][2]:
+        if status[3] == 1:
+            button3['fg'] = 'blue'
+            player = player + 1
+    if entry.get() == a[0][3]:
+        if status[4] == 1:
+            button4['fg'] = 'blue'
+            player = player + 1
+    if entry.get() == a[0][4]:
+        if status[5] == 1:
+            button5['fg'] = 'blue'
+            player = player + 1
+    if entry.get() == a[0][5]:
+        if status[6] == 1:
+            button6['fg'] = 'blue'
+            player = player + 1
+    if entry.get() == a[0][6]:
+        if status[7] == 1:
+            button7['fg'] = 'blue'
+            player = player + 1
+    if entry.get() == a[0][7]:
+        if status[8] == 1:
+            button8['fg'] = 'blue'
+            player = player + 1
+    if entry.get() == a[0][8]:
+        if status[9] == 1:
+            button9['fg'] = 'blue'
+            player = player + 1
+    if entry.get() == a[0][9]:
+        if status[10] == 1:
+            button10['fg'] = 'blue'
+            player = player + 1
+    if entry.get() == a[0][10]:
+        if status[11] == 1:
+            button11['fg'] = 'blue'
+            player = player + 1
+    if entry.get() == a[0][11]:
+        if status[12] == 1:
+            button12['fg'] = 'blue'
+            player = player + 1
+    if entry.get() == a[0][12]:
+        if status[13] == 1:
+            button13['fg'] = 'blue'
+            player = player + 1
+    if entry.get() == a[0][13]:
+        if status[14] == 1:
+            button14['fg'] = 'blue'
+            player = player + 1
+    if entry.get() == a[0][14]:
+        if status[15] == 1:
+            button15['fg'] = 'blue'
+            player = player + 1
+    if entry.get() == a[1][0]:
+        if status[16] == 1:
+            button16['fg'] = 'blue'
+            player = player + 1
+    if entry.get() == a[1][1]:
+        if status[17] == 1:
+            button17['fg'] = 'blue'
+            player = player + 1
+    if entry.get() == a[1][2]:
+        if status[18] == 1:
+            button18['fg'] = 'blue'
+            player = player + 1
+    if entry.get() == a[1][3]:
+        if status[19] == 1:
+            button19['fg'] = 'blue'
+            player = player + 1
+    if entry.get() == a[1][4]:
+        if status[20] == 1:
+            button20['fg'] = 'blue'
+            player = player + 1
+    if entry.get() == a[1][5]:
+        if status[21] == 1:
+            button21['fg'] = 'blue'
+            player = player + 1
+    if entry.get() == a[1][6]:
+        if status[22] == 1:
+            button22['fg'] = 'blue'
+            player = player + 1
+    if entry.get() == a[1][7]:
+        if status[23] == 1:
+            button23['fg'] = 'blue'
+            player = player + 1
+    if entry.get() == a[1][8]:
+        if status[24] == 1:
+            button24['fg'] = 'blue'
+            player = player + 1
+    if entry.get() == a[1][9]:
+        if status[25] == 1:
+            button25['fg'] = 'blue'
+            player = player + 1
+    if entry.get() == a[1][10]:
+        if status[26] == 1:
+            button26['fg'] = 'blue'
+            player = player + 1
+    if entry.get() == a[1][11]:
+        if status[27] == 1:
+            button27['fg'] = 'blue'
+            player = player + 1
+    if entry.get() == a[1][12]:
+        if status[28] == 1:
+            button28['fg'] = 'blue'
+            player = player + 1
+    if entry.get() == a[1][13]:
+        if status[29] == 1:
+            button29['fg'] = 'blue'
+            player = player + 1
+    if entry.get() == a[1][14]:
+        if status[30] == 1:
+            button30['fg'] = 'blue'
+            player = player + 1
+    if entry.get() == a[2][0]:
+        if status[31] == 1:
+            button31['fg'] = 'blue'
+            player = player + 1
+    if entry.get() == a[2][1]:
+        if status[32] == 1:
+            button32['fg'] = 'blue'
+            player = player + 1
+    if entry.get() == a[2][2]:
+        if status[33] == 1:
+            button33['fg'] = 'blue'
+            player = player + 1
+    if entry.get() == a[2][3]:
+        if status[34] == 1:
+            button34['fg'] = 'blue'
+            player = player + 1
+    if entry.get() == a[2][4]:
+        if status[35] == 1:
+            button35['fg'] = 'blue'
+            player = player + 1
+    if entry.get() == a[2][5]:
+        if status[36] == 1:
+            button36['fg'] = 'blue'
+            player = player + 1
+    if entry.get() == a[2][6]:
+        if status[37] == 1:
+            button37['fg'] = 'blue'
+            player = player + 1
+    if entry.get() == a[2][7]:
+        if status[38] == 1:
+            button38['fg'] = 'blue'
+            player = player + 1
+    if entry.get() == a[2][8]:
+        if status[39] == 1:
+            button39['fg'] = 'blue'
+            player = player + 1
+    if entry.get() == a[2][9]:
+        if status[40] == 1:
+            button40['fg'] = 'blue'
+            player = player + 1
+    if entry.get() == a[2][10]:
+        if status[41] == 1:
+            button41['fg'] = 'blue'
+            player = player + 1
+    if entry.get() == a[2][11]:
+        if status[42] == 1:
+            button42['fg'] = 'blue'
+            player = player + 1
+    if entry.get() == a[2][12]:
+        if status[43] == 1:
+            button43['fg'] = 'blue'
+            player = player + 1
+    if entry.get() == a[2][13]:
+        if status[44] == 1:
+            button44['fg'] = 'blue'
+            player = player + 1
+    if entry.get() == a[2][14]:
+        if status[45] == 1:
+            button45['fg'] = 'blue'
+            player = player + 1
+    if entry.get() == a[3][0]:
+        if status[46] == 1:
+            button46['fg'] = 'blue'
+            player = player + 1
+    if entry.get() == a[3][1]:
+        if status[47] == 1:
+            button47['fg'] = 'blue'
+            player = player + 1
+    if entry.get() == a[3][2]:
+        if status[48] == 1:
+            button48['fg'] = 'blue'
+            player = player + 1
+    if entry.get() == a[3][3]:
+        if status[49] == 1:
+            button49['fg'] = 'blue'
+            player = player + 1
+    if entry.get() == a[3][4]:
+        if status[50] == 1:
+            button50['fg'] = 'blue'
+            player = player + 1
+    if entry.get() == a[3][5]:
+        if status[51] == 1:
+            button51['fg'] = 'blue'
+            player = player + 1
+    if entry.get() == a[3][6]:
+        if status[52] == 1:
+            button52['fg'] = 'blue'
+            player = player + 1
+    if entry.get() == a[3][7]:
+        if status[53] == 1:
+            button53['fg'] = 'blue'
+            player = player + 1
+    if entry.get() == a[3][8]:
+        if status[54] == 1:
+            button54['fg'] = 'blue'
+            player = player + 1
+    if entry.get() == a[3][9]:
+        if status[55] == 1:
+            button55['fg'] = 'blue'
+            player = player + 1
+    if entry.get() == a[3][10]:
+        if status[56] == 1:
+            button56['fg'] = 'blue'
+            player = player + 1
+    if entry.get() == a[3][11]:
+        if status[57] == 1:
+            button57['fg'] = 'blue'
+            player = player + 1
+    if entry.get() == a[3][12]:
+        if status[58] == 1:
+            button58['fg'] = 'blue'
+            player = player + 1
+    if entry.get() == a[3][13]:
+        if status[59] == 1:
+            button59['fg'] = 'blue'
+            player = player + 1
+    if entry.get() == a[3][14]:
+        if status[60] == 1:
+            button60['fg'] = 'blue'
+            player = player + 1
+    if entry.get() == a[4][0]:
+        if status[61] == 1:
+            button61['fg'] = 'blue'
+            player = player + 1
+    if entry.get() == a[4][1]:
+        if status[62] == 1:
+            button62['fg'] = 'blue'
+            player = player + 1
+    if entry.get() == a[4][2]:
+        if status[63] == 1:
+            button63['fg'] = 'blue'
+            player = player + 1
+    if entry.get() == a[4][3]:
+        if status[64] == 1:
+            button64['fg'] = 'blue'
+            player = player + 1
+    if entry.get() == a[4][4]:
+        if status[65] == 1:
+            button65['fg'] = 'blue'
+            player = player + 1
+    if entry.get() == a[4][5]:
+        if status[66] == 1:
+            button66['fg'] = 'blue'
+            player = player + 1
+    if entry.get() == a[4][6]:
+        if status[67] == 1:
+            button67['fg'] = 'blue'
+            player = player + 1
+    if entry.get() == a[4][7]:
+        if status[68] == 1:
+            button68['fg'] = 'blue'
+            player = player + 1
+    if entry.get() == a[4][8]:
+        if status[69] == 1:
+            button69['fg'] = 'blue'
+            player = player + 1
+    if entry.get() == a[4][9]:
+        if status[70] == 1:
+            button70['fg'] = 'blue'
+            player = player + 1
+    if entry.get() == a[4][10]:
+        if status[71] == 1:
+            button71['fg'] = 'blue'
+            player = player + 1
+    if entry.get() == a[4][11]:
+        if status[72] == 1:
+            button72['fg'] = 'blue'
+            player = player + 1
+    if entry.get() == a[4][12]:
+        if status[73] == 1:
+            button73['fg'] = 'blue'
+            player = player + 1
+    if entry.get() == a[4][13]:
+        if status[74] == 1:
+            button74['fg'] = 'blue'
+            player = player + 1
+    if entry.get() == a[4][14]:
+        if status[75] == 1:
+            button75['fg'] = 'blue'
+            player = player + 1
+    if entry.get() == a[5][0]:
+        if status[76] == 1:
+            button76['fg'] = 'blue'
+            player = player + 1
+    if entry.get() == a[5][1]:
+        if status[77] == 1:
+            button77['fg'] = 'blue'
+            player = player + 1
+    if entry.get() == a[5][2]:
+        if status[78] == 1:
+            button78['fg'] = 'blue'
+            player = player + 1
+    if entry.get() == a[5][3]:
+        if status[79] == 1:
+            button79['fg'] = 'blue'
+            player = player + 1
+    if entry.get() == a[5][4]:
+        if status[80] == 1:
+            button80['fg'] = 'blue'
+            player = player + 1
+    if entry.get() == a[5][5]:
+        if status[81] == 1:
+            button81['fg'] = 'blue'
+            player = player + 1
+    if entry.get() == a[5][6]:
+        if status[82] == 1:
+            button82['fg'] = 'blue'
+            player = player + 1
+    if entry.get() == a[5][7]:
+        if status[83] == 1:
+            button83['fg'] = 'blue'
+            player = player + 1
+    if entry.get() == a[5][8]:
+        if status[84] == 1:
+            button84['fg'] = 'blue'
+            player = player + 1
+    if entry.get() == a[5][9]:
+        if status[85] == 1:
+            button85['fg'] = 'blue'
+            player = player + 1
+    if entry.get() == a[5][10]:
+        if status[86] == 1:
+            button86['fg'] = 'blue'
+            player = player + 1
+    if entry.get() == a[5][11]:
+        if status[87] == 1:
+            button87['fg'] = 'blue'
+            player = player + 1
+    if entry.get() == a[5][12]:
+        if status[88] == 1:
+            button88['fg'] = 'blue'
+            player = player + 1
+    if entry.get() == a[5][13]:
+        if status[89] == 1:
+            button89['fg'] = 'blue'
+            player = player + 1
+    if entry.get() == a[5][14]:
+        if status[90] == 1:
+            button90['fg'] = 'blue'
+            player = player + 1
+    if entry.get() == a[6][0]:
+        if status[91] == 1:
+            button91['fg'] = 'blue'
+            player = player + 1
+    if entry.get() == a[6][1]:
+        if status[92] == 1:
+            button92['fg'] = 'blue'
+            player = player + 1
+    if entry.get() == a[6][2]:
+        if status[93] == 1:
+            button93['fg'] = 'blue'
+            player = player + 1
+    if entry.get() == a[6][3]:
+        if status[94] == 1:
+            button94['fg'] = 'blue'
+            player = player + 1
+    if entry.get() == a[6][4]:
+        if status[95] == 1:
+            button95['fg'] = 'blue'
+            player = player + 1
+    if entry.get() == a[6][5]:
+        if status[96] == 1:
+            button96['fg'] = 'blue'
+            player = player + 1
+    if entry.get() == a[6][6]:
+        if status[97] == 1:
+            button97['fg'] = 'blue'
+            player = player + 1
+    if entry.get() == a[6][7]:
+        if status[98] == 1:
+            button98['fg'] = 'blue'
+            player = player + 1
+    if entry.get() == a[6][8]:
+        if status[99] == 1:
+            button99['fg'] = 'blue'
+            player = player + 1
+    if entry.get() == a[6][9]:
+        if status[100] == 1:
+            button100['fg'] = 'blue'
+            player = player + 1
+    if entry.get() == a[6][10]:
+        if status[101] == 1:
+            button101['fg'] = 'blue'
+            player = player + 1
+    if entry.get() == a[6][11]:
+        if status[102] == 1:
+            button102['fg'] = 'blue'
+            player = player + 1
+    if entry.get() == a[6][12]:
+        if status[103] == 1:
+            button103['fg'] = 'blue'
+            player = player + 1
+    if entry.get() == a[6][13]:
+        if status[104] == 1:
+            button104['fg'] = 'blue'
+            player = player + 1
+    if entry.get() == a[6][14]:
+        if status[105] == 1:
+            button105['fg'] = 'blue'
+            player = player + 1
+    if entry.get() == a[7][0]:
+        if status[106] == 1:
+            button106['fg'] = 'blue'
+            player = player + 1
+    if entry.get() == a[7][1]:
+        if status[107] == 1:
+            button107['fg'] = 'blue'
+            player = player + 1
+    if entry.get() == a[7][2]:
+        if status[108] == 1:
+            button108['fg'] = 'blue'
+            player = player + 1
+    if entry.get() == a[7][3]:
+        if status[109] == 1:
+            button109['fg'] = 'blue'
+            player = player + 1
+    if entry.get() == a[7][4]:
+        if status[110] == 1:
+            button110['fg'] = 'blue'
+            player = player + 1
+    if entry.get() == a[7][5]:
+        if status[111] == 1:
+            button111['fg'] = 'blue'
+            player = player + 1
+    if entry.get() == a[7][6]:
+        if status[112] == 1:
+            button112['fg'] = 'blue'
+            player = player + 1
+    if entry.get() == a[7][7]:
+        if status[113] == 1:
+            button113['fg'] = 'blue'
+            player = player + 1
+    if entry.get() == a[7][8]:
+        if status[114] == 1:
+            button114['fg'] = 'blue'
+            player = player + 1
+    if entry.get() == a[7][9]:
+        if status[115] == 1:
+            button115['fg'] = 'blue'
+            player = player + 1
+    if entry.get() == a[7][10]:
+        if status[116] == 1:
+            button116['fg'] = 'blue'
+            player = player + 1
+    if entry.get() == a[7][11]:
+        if status[117] == 1:
+            button117['fg'] = 'blue'
+            player = player + 1
+    if entry.get() == a[7][12]:
+        if status[118] == 1:
+            button118['fg'] = 'blue'
+            player = player + 1
+    if entry.get() == a[7][13]:
+        if status[119] == 1:
+            button119['fg'] = 'blue'
+            player = player + 1
+    if entry.get() == a[7][14]:
+        if status[120] == 1:
+            button120['fg'] = 'blue'
+            player = player + 1
+    if entry.get() == a[8][0]:
+        if status[121] == 1:
+            button121['fg'] = 'blue'
+            player = player + 1
+    if entry.get() == a[8][1]:
+        if status[122] == 1:
+            button122['fg'] = 'blue'
+            player = player + 1
+    if entry.get() == a[8][2]:
+        if status[123] == 1:
+            button123['fg'] = 'blue'
+            player = player + 1
+    if entry.get() == a[8][3]:
+        if status[124] == 1:
+            button124['fg'] = 'blue'
+            player = player + 1
+    if entry.get() == a[8][4]:
+        if status[125] == 1:
+            button125['fg'] = 'blue'
+            player = player + 1
+    if entry.get() == a[8][5]:
+        if status[126] == 1:
+            button126['fg'] = 'blue'
+            player = player + 1
+    if entry.get() == a[8][6]:
+        if status[127] == 1:
+            button127['fg'] = 'blue'
+            player = player + 1
+    if entry.get() == a[8][7]:
+        if status[128] == 1:
+            button128['fg'] = 'blue'
+            player = player + 1
+    if entry.get() == a[8][8]:
+        if status[129] == 1:
+            button129['fg'] = 'blue'
+            player = player + 1
+    if entry.get() == a[8][9]:
+        if status[130] == 1:
+            button130['fg'] = 'blue'
+            player = player + 1
+    if entry.get() == a[8][10]:
+        if status[131] == 1:
+            button131['fg'] = 'blue'
+            player = player + 1
+    if entry.get() == a[8][11]:
+        if status[132] == 1:
+            button132['fg'] = 'blue'
+            player = player + 1
+    if entry.get() == a[8][12]:
+        if status[133] == 1:
+            button133['fg'] = 'blue'
+            player = player + 1
+    if entry.get() == a[8][13]:
+        if status[134] == 1:
+            button134['fg'] = 'blue'
+            player = player + 1
+    if entry.get() == a[8][14]:
+        if status[135] == 1:
+            button135['fg'] = 'blue'
+            player = player + 1
+    if entry.get() == a[9][0]:
+        if status[136] == 1:
+            button136['fg'] = 'blue'
+            player = player + 1
+    if entry.get() == a[9][1]:
+        if status[137] == 1:
+            button137['fg'] = 'blue'
+            player = player + 1
+    if entry.get() == a[9][2]:
+        if status[138] == 1:
+            button138['fg'] = 'blue'
+            player = player + 1
+    if entry.get() == a[9][3]:
+        if status[139] == 1:
+            button139['fg'] = 'blue'
+            player = player + 1
+    if entry.get() == a[9][4]:
+        if status[140] == 1:
+            button140['fg'] = 'blue'
+            player = player + 1
+    if entry.get() == a[9][5]:
+        if status[141] == 1:
+            button141['fg'] = 'blue'
+            player = player + 1
+    if entry.get() == a[9][6]:
+        if status[142] == 1:
+            button142['fg'] = 'blue'
+            player = player + 1
+    if entry.get() == a[9][7]:
+        if status[143] == 1:
+            button143['fg'] = 'blue'
+            player = player + 1
+    if entry.get() == a[9][8]:
+        if status[144] == 1:
+            button144['fg'] = 'blue'
+            player = player + 1
+    if entry.get() == a[9][9]:
+        if status[145] == 1:
+            button145['fg'] = 'blue'
+            player = player + 1
+    if entry.get() == a[9][10]:
+        if status[146] == 1:
+            button146['fg'] = 'blue'
+            player = player + 1
+    if entry.get() == a[9][11]:
+        if status[147] == 1:
+            button147['fg'] = 'blue'
+            player = player + 1
+    if entry.get() == a[9][12]:
+        if status[148] == 1:
+            button148['fg'] = 'blue'
+            player = player + 1
+    if entry.get() == a[9][13]:
+        if status[149] == 1:
+            button149['fg'] = 'blue'
+            player = player + 1
+    if entry.get() == a[9][14]:
+        if status[150] == 1:
+            button150['fg'] = 'blue'
+            player = player + 1
+    if entry.get() == a[10][0]:
+        if status[151] == 1:
+            button151['fg'] = 'blue'
+            player = player + 1
+    if entry.get() == a[10][1]:
+        if status[152] == 1:
+            button152['fg'] = 'blue'
+            player = player + 1
+    if entry.get() == a[10][2]:
+        if status[153] == 1:
+            button153['fg'] = 'blue'
+            player = player + 1
+    if entry.get() == a[10][3]:
+        if status[154] == 1:
+            button154['fg'] = 'blue'
+            player = player + 1
+    if entry.get() == a[10][4]:
+        if status[155] == 1:
+            button155['fg'] = 'blue'
+            player = player + 1
+    if entry.get() == a[10][5]:
+        if status[156] == 1:
+            button156['fg'] = 'blue'
+            player = player + 1
+    if entry.get() == a[10][6]:
+        if status[157] == 1:
+            button157['fg'] = 'blue'
+            player = player + 1
+    if entry.get() == a[10][7]:
+        if status[158] == 1:
+            button158['fg'] = 'blue'
+            player = player + 1
+    if entry.get() == a[10][8]:
+        if status[159] == 1:
+            button159['fg'] = 'blue'
+            player = player + 1
+    if entry.get() == a[10][9]:
+        if status[160] == 1:
+            button160['fg'] = 'blue'
+            player = player + 1
+    if entry.get() == a[10][10]:
+        if status[161] == 1:
+            button161['fg'] = 'blue'
+            player = player + 1
+    if entry.get() == a[10][11]:
+        if status[162] == 1:
+            button162['fg'] = 'blue'
+            player = player + 1
+    if entry.get() == a[10][12]:
+        if status[163] == 1:
+            button163['fg'] = 'blue'
+            player = player + 1
+    if entry.get() == a[10][13]:
+        if status[164] == 1:
+            button164['fg'] = 'blue'
+            player = player + 1
+    if entry.get() == a[10][14]:
+        if status[165] == 1:
+            button165['fg'] = 'blue'
+            player = player + 1
+    if entry.get() == a[11][0]:
+        if status[166] == 1:
+            button166['fg'] = 'blue'
+            player = player + 1
+    if entry.get() == a[11][1]:
+        if status[167] == 1:
+            button167['fg'] = 'blue'
+            player = player + 1
+    if entry.get() == a[11][2]:
+        if status[168] == 1:
+            button168['fg'] = 'blue'
+            player = player + 1
+    if entry.get() == a[11][3]:
+        if status[169] == 1:
+            button169['fg'] = 'blue'
+            player = player + 1
+    if entry.get() == a[11][4]:
+        if status[170] == 1:
+            button170['fg'] = 'blue'
+            player = player + 1
+    if entry.get() == a[11][5]:
+        if status[171] == 1:
+            button171['fg'] = 'blue'
+            player = player + 1
+    if entry.get() == a[11][6]:
+        if status[172] == 1:
+            button172['fg'] = 'blue'
+            player = player + 1
+    if entry.get() == a[11][7]:
+        if status[173] == 1:
+            button173['fg'] = 'blue'
+            player = player + 1
+    if entry.get() == a[11][8]:
+        if status[174] == 1:
+            button174['fg'] = 'blue'
+            player = player + 1
+    if entry.get() == a[11][9]:
+        if status[175] == 1:
+            button175['fg'] = 'blue'
+            player = player + 1
+    if entry.get() == a[11][10]:
+        if status[176] == 1:
+            button176['fg'] = 'blue'
+            player = player + 1
+    if entry.get() == a[11][11]:
+        if status[177] == 1:
+            button177['fg'] = 'blue'
+            player = player + 1
+    if entry.get() == a[11][12]:
+        if status[178] == 1:
+            button178['fg'] = 'blue'
+            player = player + 1
+    if entry.get() == a[11][13]:
+        if status[179] == 1:
+            button179['fg'] = 'blue'
+            player = player + 1
+    if entry.get() == a[11][14]:
+        if status[180] == 1:
+            button180['fg'] = 'blue'
+            player = player + 1
+    if entry.get() == a[12][0]:
+        if status[181] == 1:
+            button181['fg'] = 'blue'
+            player = player + 1
+    if entry.get() == a[12][1]:
+        if status[182] == 1:
+            button182['fg'] = 'blue'
+            player = player + 1
+    if entry.get() == a[12][2]:
+        if status[183] == 1:
+            button183['fg'] = 'blue'
+            player = player + 1
+    if entry.get() == a[12][3]:
+        if status[184] == 1:
+            button184['fg'] = 'blue'
+            player = player + 1
+    if entry.get() == a[12][4]:
+        if status[185] == 1:
+            button185['fg'] = 'blue'
+            player = player + 1
+    if entry.get() == a[12][5]:
+        if status[186] == 1:
+            button186['fg'] = 'blue'
+            player = player + 1
+    if entry.get() == a[12][6]:
+        if status[187] == 1:
+            button187['fg'] = 'blue'
+            player = player + 1
+    if entry.get() == a[12][7]:
+        if status[188] == 1:
+            button188['fg'] = 'blue'
+            player = player + 1
+    if entry.get() == a[12][8]:
+        if status[189] == 1:
+            button189['fg'] = 'blue'
+            player = player + 1
+    if entry.get() == a[12][9]:
+        if status[190] == 1:
+            button190['fg'] = 'blue'
+            player = player + 1
+    if entry.get() == a[12][10]:
+        if status[191] == 1:
+            button191['fg'] = 'blue'
+            player = player + 1
+    if entry.get() == a[12][11]:
+        if status[192] == 1:
+            button192['fg'] = 'blue'
+            player = player + 1
+    if entry.get() == a[12][12]:
+        if status[193] == 1:
+            button193['fg'] = 'blue'
+            player = player + 1
+    if entry.get() == a[12][13]:
+        if status[194] == 1:
+            button194['fg'] = 'blue'
+            player = player + 1
+    if entry.get() == a[12][14]:
+        if status[195] == 1:
+            button195['fg'] = 'blue'
+            player = player + 1
+    if entry.get() == a[13][0]:
+        if status[196] == 1:
+            button196['fg'] = 'blue'
+            player = player + 1
+    if entry.get() == a[13][1]:
+        if status[197] == 1:
+            button197['fg'] = 'blue'
+            player = player + 1
+    if entry.get() == a[13][2]:
+        if status[198] == 1:
+            button198['fg'] = 'blue'
+            player = player + 1
+    if entry.get() == a[13][3]:
+        if status[199] == 1:
+            button199['fg'] = 'blue'
+            player = player + 1
+    if entry.get() == a[13][4]:
+        if status[200] == 1:
+            button200['fg'] = 'blue'
+            player = player + 1
+    if entry.get() == a[13][5]:
+        if status[201] == 1:
+            button201['fg'] = 'blue'
+            player = player + 1
+    if entry.get() == a[13][6]:
+        if status[202] == 1:
+            button202['fg'] = 'blue'
+            player = player + 1
+    if entry.get() == a[13][7]:
+        if status[203] == 1:
+            button203['fg'] = 'blue'
+            player = player + 1
+    if entry.get() == a[13][8]:
+        if status[204] == 1:
+            button204['fg'] = 'blue'
+            player = player + 1
+    if entry.get() == a[13][9]:
+        if status[205] == 1:
+            button205['fg'] = 'blue'
+            player = player + 1
+    if entry.get() == a[13][10]:
+        if status[206] == 1:
+            button206['fg'] = 'blue'
+            player = player + 1
+    if entry.get() == a[13][11]:
+        if status[207] == 1:
+            button207['fg'] = 'blue'
+            player = player + 1
+    if entry.get() == a[13][12]:
+        if status[208] == 1:
+            button208['fg'] = 'blue'
+            player = player + 1
+    if entry.get() == a[13][13]:
+        if status[209] == 1:
+            button209['fg'] = 'blue'
+            player = player + 1
+    if entry.get() == a[13][14]:
+        if status[210] == 1:
+            button210['fg'] = 'blue'
+            player = player + 1
+    if entry.get() == a[14][0]:
+        if status[211] == 1:
+            button211['fg'] = 'blue'
+            player = player + 1
+    if entry.get() == a[14][1]:
+        if status[212] == 1:
+            button212['fg'] = 'blue'
+            player = player + 1
+    if entry.get() == a[14][2]:
+        if status[213] == 1:
+            button213['fg'] = 'blue'
+            player = player + 1
+    if entry.get() == a[14][3]:
+        if status[214] == 1:
+            button214['fg'] = 'blue'
+            player = player + 1
+    if entry.get() == a[14][4]:
+        if status[215] == 1:
+            button215['fg'] = 'blue'
+            player = player + 1
+    if entry.get() == a[14][5]:
+        if status[216] == 1:
+            button216['fg'] = 'blue'
+            player = player + 1
+    if entry.get() == a[14][6]:
+        if status[217] == 1:
+            button217['fg'] = 'blue'
+            player = player + 1
+    if entry.get() == a[14][7]:
+        if status[218] == 1:
+            button218['fg'] = 'blue'
+            player = player + 1
+    if entry.get() == a[14][8]:
+        if status[219] == 1:
+            button219['fg'] = 'blue'
+            player = player + 1
+    if entry.get() == a[14][9]:
+        if status[220] == 1:
+            button220['fg'] = 'blue'
+            player = player + 1
+    if entry.get() == a[14][10]:
+        if status[221] == 1:
+            button221['fg'] = 'blue'
+            player = player + 1
+    if entry.get() == a[14][11]:
+        if status[222] == 1:
+            button222['fg'] = 'blue'
+            player = player + 1
+    if entry.get() == a[14][12]:
+        if status[223] == 1:
+            button223['fg'] = 'blue'
+            player = player + 1
+    if entry.get() == a[14][13]:
+        if status[224] == 1:
+            button224['fg'] = 'blue'
+            player = player + 1
+    if entry.get() == a[14][14]:
+        if status[225] == 1:
+            button225['fg'] = 'blue'
+            player = player + 1
+
+    entry.delete(0,END)
+# entry 설정
+entry = Entry(root, width=30)
+entry.bind("<Return>", solution)
+entry.place(x=1300,y=400)
+num = 0
+def Com():
+    num = random.randint(1,225)
+    if status[num] == 1:
+        return 0
+    else:
+        status[num] = 1
+        global com
+        com = com + 1
+        if num == 1:
+            button1['fg'] = 'red'
+        if num == 2:
+            button2['fg'] = 'red'
+        if num == 3:
+            button3['fg'] = 'red'
+        if num == 4:
+            button4['fg'] = 'red'
+        if num == 5:
+            button5['fg'] = 'red'
+        if num == 6:
+            button6['fg'] = 'red'
+        if num == 7:
+            button7['fg'] = 'red'
+        if num == 8:
+            button8['fg'] = 'red'
+        if num == 9:
+            button9['fg'] = 'red'
+        if num == 10:
+            button10['fg'] = 'red'
+        if num == 11:
+            button11['fg'] = 'red'
+        if num == 12:
+            button12['fg'] = 'red'
+        if num == 13:
+            button13['fg'] = 'red'
+        if num == 14:
+            button14['fg'] = 'red'
+        if num == 15:
+            button15['fg'] = 'red'
+        if num == 16:
+            button16['fg'] = 'red'
+        if num == 17:
+            button17['fg'] = 'red'
+        if num == 18:
+            button18['fg'] = 'red'
+        if num == 19:
+            button19['fg'] = 'red'
+        if num == 20:
+            button20['fg'] = 'red'
+        if num == 21:
+            button21['fg'] = 'red'
+        if num == 22:
+            button22['fg'] = 'red'
+        if num == 23:
+            button23['fg'] = 'red'
+        if num == 24:
+            button24['fg'] = 'red'
+        if num == 25:
+            button25['fg'] = 'red'
+        if num == 26:
+            button26['fg'] = 'red'
+        if num == 27:
+            button27['fg'] = 'red'
+        if num == 28:
+            button28['fg'] = 'red'
+        if num == 29:
+            button29['fg'] = 'red'
+        if num == 30:
+            button30['fg'] = 'red'
+        if num == 31:
+            button31['fg'] = 'red'
+        if num == 32:
+            button32['fg'] = 'red'
+        if num == 33:
+            button33['fg'] = 'red'
+        if num == 34:
+            button34['fg'] = 'red'
+        if num == 35:
+            button35['fg'] = 'red'
+        if num == 36:
+            button36['fg'] = 'red'
+        if num == 37:
+            button37['fg'] = 'red'
+        if num == 38:
+            button38['fg'] = 'red'
+        if num == 39:
+            button39['fg'] = 'red'
+        if num == 40:
+            button40['fg'] = 'red'
+        if num == 41:
+            button41['fg'] = 'red'
+        if num == 42:
+            button42['fg'] = 'red'
+        if num == 43:
+            button43['fg'] = 'red'
+        if num == 44:
+            button44['fg'] = 'red'
+        if num == 45:
+            button45['fg'] = 'red'
+        if num == 46:
+            button46['fg'] = 'red'
+        if num == 47:
+            button47['fg'] = 'red'
+        if num == 48:
+            button48['fg'] = 'red'
+        if num == 49:
+            button49['fg'] = 'red'
+        if num == 50:
+            button50['fg'] = 'red'
+        if num == 51:
+            button51['fg'] = 'red'
+        if num == 52:
+            button52['fg'] = 'red'
+        if num == 53:
+            button53['fg'] = 'red'
+        if num == 54:
+            button54['fg'] = 'red'
+        if num == 55:
+            button55['fg'] = 'red'
+        if num == 56:
+            button56['fg'] = 'red'
+        if num == 57:
+            button57['fg'] = 'red'
+        if num == 58:
+            button58['fg'] = 'red'
+        if num == 59:
+            button59['fg'] = 'red'
+        if num == 60:
+            button60['fg'] = 'red'
+        if num == 61:
+            button61['fg'] = 'red'
+        if num == 62:
+            button62['fg'] = 'red'
+        if num == 63:
+            button63['fg'] = 'red'
+        if num == 64:
+            button64['fg'] = 'red'
+        if num == 65:
+            button65['fg'] = 'red'
+        if num == 66:
+            button66['fg'] = 'red'
+        if num == 67:
+            button67['fg'] = 'red'
+        if num == 68:
+            button68['fg'] = 'red'
+        if num == 69:
+            button69['fg'] = 'red'
+        if num == 70:
+            button70['fg'] = 'red'
+        if num == 71:
+            button71['fg'] = 'red'
+        if num == 72:
+            button72['fg'] = 'red'
+        if num == 73:
+            button73['fg'] = 'red'
+        if num == 74:
+            button74['fg'] = 'red'
+        if num == 75:
+            button75['fg'] = 'red'
+        if num == 76:
+            button76['fg'] = 'red'
+        if num == 77:
+            button77['fg'] = 'red'
+        if num == 78:
+            button78['fg'] = 'red'
+        if num == 79:
+            button79['fg'] = 'red'
+        if num == 80:
+            button80['fg'] = 'red'
+        if num == 81:
+            button81['fg'] = 'red'
+        if num == 82:
+            button82['fg'] = 'red'
+        if num == 83:
+            button83['fg'] = 'red'
+        if num == 84:
+            button84['fg'] = 'red'
+        if num == 85:
+            button85['fg'] = 'red'
+        if num == 86:
+            button86['fg'] = 'red'
+        if num == 87:
+            button87['fg'] = 'red'
+        if num == 88:
+            button88['fg'] = 'red'
+        if num == 89:
+            button89['fg'] = 'red'
+        if num == 90:
+            button90['fg'] = 'red'
+        if num == 91:
+            button91['fg'] = 'red'
+        if num == 92:
+            button92['fg'] = 'red'
+        if num == 93:
+            button93['fg'] = 'red'
+        if num == 94:
+            button94['fg'] = 'red'
+        if num == 95:
+            button95['fg'] = 'red'
+        if num == 96:
+            button96['fg'] = 'red'
+        if num == 97:
+            button97['fg'] = 'red'
+        if num == 98:
+            button98['fg'] = 'red'
+        if num == 99:
+            button99['fg'] = 'red'
+        if num == 100:
+            button100['fg'] = 'red'
+        if num == 101:
+            button101['fg'] = 'red'
+        if num == 102:
+            button102['fg'] = 'red'
+        if num == 103:
+            button103['fg'] = 'red'
+        if num == 104:
+            button104['fg'] = 'red'
+        if num == 105:
+            button105['fg'] = 'red'
+        if num == 106:
+            button106['fg'] = 'red'
+        if num == 107:
+            button107['fg'] = 'red'
+        if num == 108:
+            button108['fg'] = 'red'
+        if num == 109:
+            button109['fg'] = 'red'
+        if num == 110:
+            button110['fg'] = 'red'
+        if num == 111:
+            button111['fg'] = 'red'
+        if num == 112:
+            button112['fg'] = 'red'
+        if num == 113:
+            button113['fg'] = 'red'
+        if num == 114:
+            button114['fg'] = 'red'
+        if num == 115:
+            button115['fg'] = 'red'
+        if num == 116:
+            button116['fg'] = 'red'
+        if num == 117:
+            button117['fg'] = 'red'
+        if num == 118:
+            button118['fg'] = 'red'
+        if num == 119:
+            button119['fg'] = 'red'
+        if num == 120:
+            button120['fg'] = 'red'
+        if num == 121:
+            button121['fg'] = 'red'
+        if num == 122:
+            button122['fg'] = 'red'
+        if num == 123:
+            button123['fg'] = 'red'
+        if num == 124:
+            button124['fg'] = 'red'
+        if num == 125:
+            button125['fg'] = 'red'
+        if num == 126:
+            button126['fg'] = 'red'
+        if num == 127:
+            button127['fg'] = 'red'
+        if num == 128:
+            button128['fg'] = 'red'
+        if num == 129:
+            button129['fg'] = 'red'
+        if num == 130:
+            button130['fg'] = 'red'
+        if num == 131:
+            button131['fg'] = 'red'
+        if num == 132:
+            button132['fg'] = 'red'
+        if num == 133:
+            button133['fg'] = 'red'
+        if num == 134:
+            button134['fg'] = 'red'
+        if num == 135:
+            button135['fg'] = 'red'
+        if num == 136:
+            button136['fg'] = 'red'
+        if num == 137:
+            button137['fg'] = 'red'
+        if num == 138:
+            button138['fg'] = 'red'
+        if num == 139:
+            button139['fg'] = 'red'
+        if num == 140:
+            button140['fg'] = 'red'
+        if num == 141:
+            button141['fg'] = 'red'
+        if num == 142:
+            button142['fg'] = 'red'
+        if num == 143:
+            button143['fg'] = 'red'
+        if num == 144:
+            button144['fg'] = 'red'
+        if num == 145:
+            button145['fg'] = 'red'
+        if num == 146:
+            button146['fg'] = 'red'
+        if num == 147:
+            button147['fg'] = 'red'
+        if num == 148:
+            button148['fg'] = 'red'
+        if num == 149:
+            button149['fg'] = 'red'
+        if num == 150:
+            button150['fg'] = 'red'
+        if num == 151:
+            button151['fg'] = 'red'
+        if num == 152:
+            button152['fg'] = 'red'
+        if num == 153:
+            button153['fg'] = 'red'
+        if num == 154:
+            button154['fg'] = 'red'
+        if num == 155:
+            button155['fg'] = 'red'
+        if num == 156:
+            button156['fg'] = 'red'
+        if num == 157:
+            button157['fg'] = 'red'
+        if num == 158:
+            button158['fg'] = 'red'
+        if num == 159:
+            button159['fg'] = 'red'
+        if num == 160:
+            button160['fg'] = 'red'
+        if num == 161:
+            button161['fg'] = 'red'
+        if num == 162:
+            button162['fg'] = 'red'
+        if num == 163:
+            button163['fg'] = 'red'
+        if num == 164:
+            button164['fg'] = 'red'
+        if num == 165:
+            button165['fg'] = 'red'
+        if num == 166:
+            button166['fg'] = 'red'
+        if num == 167:
+            button167['fg'] = 'red'
+        if num == 168:
+            button168['fg'] = 'red'
+        if num == 169:
+            button169['fg'] = 'red'
+        if num == 170:
+            button170['fg'] = 'red'
+        if num == 171:
+            button171['fg'] = 'red'
+        if num == 172:
+            button172['fg'] = 'red'
+        if num == 173:
+            button173['fg'] = 'red'
+        if num == 174:
+            button174['fg'] = 'red'
+        if num == 175:
+            button175['fg'] = 'red'
+        if num == 176:
+            button176['fg'] = 'red'
+        if num == 177:
+            button177['fg'] = 'red'
+        if num == 178:
+            button178['fg'] = 'red'
+        if num == 179:
+            button179['fg'] = 'red'
+        if num == 180:
+            button180['fg'] = 'red'
+        if num == 181:
+            button181['fg'] = 'red'
+        if num == 182:
+            button182['fg'] = 'red'
+        if num == 183:
+            button183['fg'] = 'red'
+        if num == 184:
+            button184['fg'] = 'red'
+        if num == 185:
+            button185['fg'] = 'red'
+        if num == 186:
+            button186['fg'] = 'red'
+        if num == 187:
+            button187['fg'] = 'red'
+        if num == 188:
+            button188['fg'] = 'red'
+        if num == 189:
+            button189['fg'] = 'red'
+        if num == 190:
+            button190['fg'] = 'red'
+        if num == 191:
+            button191['fg'] = 'red'
+        if num == 192:
+            button192['fg'] = 'red'
+        if num == 193:
+            button193['fg'] = 'red'
+        if num == 194:
+            button194['fg'] = 'red'
+        if num == 195:
+            button195['fg'] = 'red'
+        if num == 196:
+            button196['fg'] = 'red'
+        if num == 197:
+            button197['fg'] = 'red'
+        if num == 198:
+            button198['fg'] = 'red'
+        if num == 199:
+            button199['fg'] = 'red'
+        if num == 200:
+            button200['fg'] = 'red'
+        if num == 201:
+            button201['fg'] = 'red'
+        if num == 202:
+            button202['fg'] = 'red'
+        if num == 203:
+            button203['fg'] = 'red'
+        if num == 204:
+            button204['fg'] = 'red'
+        if num == 205:
+            button205['fg'] = 'red'
+        if num == 206:
+            button206['fg'] = 'red'
+        if num == 207:
+            button207['fg'] = 'red'
+        if num == 208:
+            button208['fg'] = 'red'
+        if num == 209:
+            button209['fg'] = 'red'
+        if num == 210:
+            button210['fg'] = 'red'
+        if num == 211:
+            button211['fg'] = 'red'
+        if num == 212:
+            button212['fg'] = 'red'
+        if num == 213:
+            button213['fg'] = 'red'
+        if num == 214:
+            button214['fg'] = 'red'
+        if num == 215:
+            button215['fg'] = 'red'
+        if num == 216:
+            button216['fg'] = 'red'
+        if num == 217:
+            button217['fg'] = 'red'
+        if num == 218:
+            button218['fg'] = 'red'
+        if num == 219:
+            button219['fg'] = 'red'
+        if num == 220:
+            button220['fg'] = 'red'
+        if num == 221:
+            button221['fg'] = 'red'
+        if num == 222:
+            button222['fg'] = 'red'
+        if num == 223:
+            button223['fg'] = 'red'
+        if num == 224:
+            button224['fg'] = 'red'
+        if num == 225:
+            button225['fg'] = 'red'
+        return 1
+# 금요일에 할꺼 :점수판 레이블 구현 ㅇㅋ?
+#label 설정
+label = Label(root,width=30)
+label.pack(padx=900,pady=0)
+time = 120
+playerscore = Label(root,width=20)
+playerscore.pack()
+comscore = Label(root,width = 20)
+comscore.pack()
+def timer(time):
+    if time == 0:
+        result()
+        return 0
+    else:
+        label.configure(text="%d 초 남음"%time)
+        if time % 3 == 0:
+            while(Com()==0):
+                continue
+
+    root.after(1000,timer,time-1)
+    playerscore.configure(text = "%d"%player)
+    comscore.configure(text = "%d"%com)
+point = Label(root,width=20)
+point.pack()
+point.configure(text="너              컴퓨터")
+result1 = Label(root,width=20)
+result1.pack()
+def result():
+    if player > com:
+        label.configure(text = "승리!",fg = "blue")
+    if player < com:
+        label.configure(text = "패배!",fg = "red")
+    if player == com:
+        label.configure(text = "무승부!")
+timer(time)
+
+
+root.mainloop()
+
