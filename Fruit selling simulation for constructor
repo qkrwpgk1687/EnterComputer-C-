@@ -1,0 +1,70 @@
+#define _CRT_SECURE_NO_WARNINGS
+
+#include <iostream>
+#include <cstring>
+using namespace std;
+
+class Fruitseller
+{
+private:
+	int APPLE_PRICE;
+	int numOFapples;
+	int myMoney;
+public:
+	Fruitseller(int price, int num, int money)
+	{
+		APPLE_PRICE = price;
+		numOFapples = num;
+		myMoney = money;
+	}
+	int SaleApples(int money)
+	{
+		int num = money / APPLE_PRICE;
+		numOFapples -= num;
+		myMoney += money;
+		return num;
+	}
+	void showSalesResult()
+	{
+		cout << "남은 사과:" << numOFapples << endl;
+		cout << "판매 수익:" << myMoney << endl;
+	}
+};
+
+class FruitBuyer
+{
+	int myMoney;
+	int numOFapples;
+public:
+	FruitBuyer(int money)
+	{
+		myMoney = money;
+		numOFapples = 0;
+	}
+	void BuyApples(Fruitseller &seller, int money)
+	{
+		numOFapples += seller.SaleApples(money);
+		myMoney -= money;
+	}
+	void showBuyResult()
+
+	{
+		cout << "현재 잔액: " << myMoney << endl;
+		cout << "사과 개수: " << numOFapples << endl << endl;
+	}
+
+};
+int main(void)
+{
+	Fruitseller seller(1000,20,0);
+	FruitBuyer buyer(5000);
+	buyer.BuyApples(seller, 2000);
+	
+
+	cout << "과일 판매자의 현황" << endl;
+	seller.showSalesResult();
+	cout << "과일 구매자의 현황" << endl;
+	buyer.showBuyResult();
+	return 0;
+
+}
